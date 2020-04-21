@@ -28,9 +28,15 @@ function processFirstItem(stringList, callback) {
  * 
  * 1. What is the difference between counter1 and counter2?
  * 
+ * In counter1 has another function wrapping around counter()
+ * 
  * 2. Which of the two uses a closure? How can you tell?
  * 
+ * Counter1 uses it because the counter function is inside the counterMaker function - and counterMaker has a variable that counter has access to.
+ * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ * 
+ * If you have other functions using the "count" variable counter1 would be preferable. Counter2 is better if you need the updated value of "count" saved in memory
  *
 */
 
@@ -50,6 +56,9 @@ let count = 0;
 function counter2() {
   return count++;
 }
+
+console.log(counter2());
+console.log(counter2());
 
 
 /* Task 2: inning() 
