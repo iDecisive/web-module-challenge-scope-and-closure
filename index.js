@@ -117,8 +117,19 @@ and returns the score at each pont in the game, like so:
 
 Final Score: awayTeam - homeTeam */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(score, times) {
+
+  let scoreArray = [];
+  
+  for (let i=0; i<times; i++) {
+   
+    scoreArray.push("Inning " + (i+1) + ": " + score() + "-" + score()); //Why does it say score isn't a function?
+
+  }
+
+  return scoreArray;
+
 }
 
-
+console.log("Task 4 below: ");
+console.log(scoreboard(inning(),9));
