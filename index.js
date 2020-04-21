@@ -64,13 +64,13 @@ console.log("Task 1: Read commented section");
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(teamName){
+function inning(){
 
-    return teamName + " scored " + Math.round((Math.random() * 2)) + " in the inning!";
+    return Math.round((Math.random() * 2));
 
 }
 
-console.log(inning("Team Blue"));
+console.log("Task 2: They scored " + inning() + " in the inning!");
 
 /* Task 3: finalScore()
 
@@ -86,11 +86,14 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
+function finalScore(cb,innings){
 
-  /*Code Here*/
+  return { "Home": inning(), "Away": inning() };
 
 }
+
+console.log("Task 3 below: ");
+console.log(finalScore());
 
 /* Task 4: 
 
