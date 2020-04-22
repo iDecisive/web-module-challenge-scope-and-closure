@@ -28,9 +28,15 @@ function processFirstItem(stringList, callback) {
  * 
  * 1. What is the difference between counter1 and counter2?
  * 
+ * In counter1 has another function wrapping around counter()
+ * 
  * 2. Which of the two uses a closure? How can you tell?
  * 
+ * Counter1 uses it because the counter function is inside the counterMaker function - and counterMaker has a variable that counter has access to.
+ * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ * 
+ * If you have other functions using the "count" variable counter1 would be preferable. Counter2 is better if you need the updated value of "count" saved in memory
  *
 */
 
@@ -51,16 +57,20 @@ function counter2() {
   return count++;
 }
 
+console.log("Task 1: Read commented section");
+
 
 /* Task 2: inning() 
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
+function inning(){
 
-    /*Code Here*/
+    return Math.round((Math.random() * 2));
 
 }
+
+console.log("Task 2: They scored " + inning() + " in the inning!");
 
 /* Task 3: finalScore()
 
@@ -76,11 +86,26 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
+function finalScore(cb,num){
 
-  /*Code Here*/
+  let homeScore = 0;
+
+  let awayScore = 0;
+
+  for (let i=0; i<num; i++) {
+
+    homeScore = homeScore + cb();
+
+    awayScore = awayScore + cb();
+
+  }
+
+  return { "Home": homeScore, "Away": awayScore };
 
 }
+
+console.log("Task 3 below: ");
+console.log(finalScore(inning,9));
 
 /* Task 4: 
 
@@ -104,8 +129,37 @@ and returns the score at each pont in the game, like so:
 
 Final Score: awayTeam - homeTeam */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(score, times) {
+
+  let totalHome = 0;
+
+  let totalAway = 0;
+
+  let scoreArray = [];
+  
+  for (let i=0; i<times; i++) {
+
+    let inningHome = score();
+
+    let inningAway = score();
+
+    totalHome = totalHome + inningHome;
+
+    totalAway = totalAway + inningAway;
+   
+    scoreArray.push("Inning " + (i+1) + ": " + inningAway + " - " + inningHome);
+
+    if(i === times - 1) { //In other words: If this is the last inning... do this
+
+      scoreArray.push("Final score: " + totalAway + " - " + totalHome);
+
+    }
+
+  }
+
+  return scoreArray;
+
 }
 
-
+console.log("Task 4 below: ");
+console.log(scoreboard(inning, 9));

@@ -42,6 +42,9 @@ Find the file `index.js` and complete the tasks.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+
+A closure is a way of allowing a function it's own private variable(s) aswell as access to a parent function's variables. It's comprised of a function within a function.
+
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -63,8 +66,16 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+
+The closure is being used inside the function being returned within personalDice. The inner function is using a private variable called newRoll but it also can access "name" which is being passed into personalDice.
+
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+
+It never goes to 6 since it's rounded to floor with Math.floor. You could change this by swapping Math.floor for Math.round
+
 c. What is the lexical scope of `newRoll`? 
+
+newRoll can only be directly accessed within the function that is inside the return statement of personalDice. However, we can still see it's output returned in the string it logs. 
 
 ### Task 3 - Stretch Goals
 
@@ -88,6 +99,23 @@ console.log("b defined? " + (typeof b !== 'undefined'));
 var addSix = createBase(6);
 addSix(10); // returns 16
 addSix(21); // returns 27
+```
+
+Answer:
+```js
+function createBase(num) {
+  
+  return function(num2) {
+
+    return num + num2;
+    
+  }
+  
+}
+
+var addSix = createBase(6); //this argument gets passed into the enclosing function; the function inside has access to it.
+addSix(10);
+addSix(21);
 ```
 
 3. Research the differences between functional programming and object oriented programming. Then, describe the pros and cons of functional programming vs object-oriented programming. This is a common interview question and great practice!
