@@ -131,11 +131,29 @@ Final Score: awayTeam - homeTeam */
 
 function scoreboard(score, times) {
 
+  let totalHome = 0;
+
+  let totalAway = 0;
+
   let scoreArray = [];
   
   for (let i=0; i<times; i++) {
+
+    let inningHome = score();
+
+    let inningAway = score();
+
+    totalHome = totalHome + inningHome;
+
+    totalAway = totalAway + inningAway;
    
-    scoreArray.push("Inning " + (i+1) + ": " + score() + "-" + score()); //Why does it say score isn't a function?
+    scoreArray.push("Inning " + (i+1) + ": " + inningAway + " - " + inningHome);
+
+    if(i === times - 1) { //In other words: If this is the last inning... do this
+
+      scoreArray.push("Final score: " + totalAway + " - " + totalHome);
+
+    }
 
   }
 
@@ -144,4 +162,4 @@ function scoreboard(score, times) {
 }
 
 console.log("Task 4 below: ");
-console.log(scoreboard(inning(), 9));
+console.log(scoreboard(inning, 9));
