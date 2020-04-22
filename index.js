@@ -86,14 +86,26 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(cb,innings){
+function finalScore(cb,num){
 
-  return { "Home": inning(), "Away": inning() };
+  let homeScore = 0;
+
+  let awayScore = 0;
+
+  for (let i=0; i<num; i++) {
+
+    homeScore = homeScore + cb();
+
+    awayScore = awayScore + cb();
+
+  }
+
+  return { "Home": homeScore, "Away": awayScore };
 
 }
 
 console.log("Task 3 below: ");
-console.log(finalScore());
+console.log(finalScore(inning,9));
 
 /* Task 4: 
 
@@ -132,4 +144,4 @@ function scoreboard(score, times) {
 }
 
 console.log("Task 4 below: ");
-console.log(scoreboard(inning(),9));
+console.log(scoreboard(inning(), 9));
